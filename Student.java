@@ -1,4 +1,5 @@
 import TimeSlot;
+import java.util.Scanner;
 import java.util.List;
 
 public class Student
@@ -7,37 +8,58 @@ public class Student
 	private List<string> courses;
 	private List<TimeSlot> availability;
 
-	public void AddCourse(string course)
+	public void AddCourse()
 	{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the course name: ");
+		string course = input.nextLine();
+
 		// Prevent adding a duplicate course
-		if (courses.contains(course))
+		while (courses.contains(course))
 		{
 			System.out.println(course + " is already present.");
-			return;
+			System.out.println("Enter the course name: ");
+			course = input.nextLine();
 		}
 		courses.add(course);
 	}
-	public void AddAvailability(TimeSlot time)
+	public void AddAvailability()
 	{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the date, as the month name followed by the day: ");
+		string day = input.nextLine();
+		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+		int start = input.nextLine();
+		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+		int end = input.nextLine();
+		TimeSlot time = new TimeSlot(day, start, end);
+
 		// Prevent adding a duplicate TimeSlot
-		/*for (int i = 0; i < availability.Length; i++)
-		{
-			if (time.equals(courses[i]))
-			{
-				System.out.println("This time slot is already present.");
-				return;
-			}
-		}*/
-		if (availability.contains(time))
+		while (availability.contains(time))
 		{
 			System.out.println("This time slot is already present.");
-			return;
+			System.out.println("Enter the date, as the month name followed by the day: ");
+			time.day = input.nextLine();
+			System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+			time.startTime = input.nextLine();
+			System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+			time.endTime = input.nextLine();
 		}
 		availability.add(time);
 	}
-	public void RemoveAvailability(TimeSlot time)
+	public void RemoveAvailability()
 	{
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter the date, as the month name followed by the day: ");
+		string day = input.nextLine();
+		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+		int start = input.nextLine();
+		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+		int end = input.nextLine();
+		TimeSlot time = new TimeSlot(day, start, end);
+
 		// The remove method checks if the item exists for us
-		availability.remove(time);
+		if (!availability.remove(time))
+			System.out.println("Inputted time slot does not exist.");
 	}
 }
