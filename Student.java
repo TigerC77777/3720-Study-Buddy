@@ -1,12 +1,12 @@
 import TimeSlot;
 import java.util.Scanner;
-import java.util.List;
+import java.util.ArrayList;
 
 public class Student
 {
 	private string name;
-	private List<string> courses;
-	private List<TimeSlot> availability;
+	private ArrayList<string> courses;
+	private ArrayList<TimeSlot> availability;
 
 	public void AddCourse()
 	{
