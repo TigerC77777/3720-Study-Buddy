@@ -1,9 +1,9 @@
-public class StuddySession{
+public class StudySession{
+        String course;
+        String status; //proposed, confirmed
     public static void main(String[] args){
         //ArrayList<Student> participants;
-        String course;
         //TimeSlot timeSlot;
-        String status; //proposed, confirmed
     }
 
     public void propose(){
