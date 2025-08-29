@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class Student
 {
-	private string name;
-	private ArrayList<string> courses;
+	private String name;
+	private ArrayList<String> courses;
 	private ArrayList<TimeSlot> availability;
+
+    public String getName(){
+        return name;
+    }
 
 	public void AddCourse()
 	{
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the course name: ");
-		string course = input.nextLine();
+		String course = input.nextLine();
 
 		// Prevent adding a duplicate course
 		while (courses.contains(course))
@@ -51,7 +55,7 @@ public class Student
 	{
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter the date, as the month name followed by the day: ");
-		string day = input.nextLine();
+		String day = input.nextLine();
 		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
 		int start = input.nextLine();
 		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
