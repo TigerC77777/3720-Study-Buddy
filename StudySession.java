@@ -1,8 +1,8 @@
 public class StuddySession{
     public static void main(String[] args){
-        ArrayList<Student> participants;
+        //ArrayList<Student> participants;
         String course;
-        TimeSlot timeSlot;
+        //TimeSlot timeSlot;
         String status; //proposed, confirmed
     }
 

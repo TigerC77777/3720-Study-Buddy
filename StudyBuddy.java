@@ -1,11 +1,13 @@
-public class StudyBuddy{
-    ArrayList<Student> students;
-    ArrayList<StudySession> sessions;
+import java.util.Scanner;
 
+public class StudyBuddy{
+    //ArrayList<Student> students;
+    //ArrayList<StudySession> sessions;
     public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Clemson Study Buddy Helper App!\n");
         System.out.println("Input your selection:\n1. Create Profile\n2.View Profile\n3.Add Availability\n4.Remove Availability\n5.Search for Classmates\n6.Suggest Matches\n7.Schedule Session\n8.Confirm Session\n9.Exit");
-        int num = System.in.read();
+        int num = Integer.parseInt(sc.nextLine());
         switch(num){
             case 1:
                 createProfile();
@@ -35,11 +37,11 @@ public class StudyBuddy{
                 //exit
                 break;
         }
-        
+
     }
 
-    public void createProfile(){
-
+    public static void createProfile(){
+        System.out.println("What is your name?");
     }
 
     public void searchByCourse(){
