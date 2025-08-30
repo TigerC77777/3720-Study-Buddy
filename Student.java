@@ -4,8 +4,8 @@ import java.util.Scanner;
 public class Student
 {
 	private String name;
-	private ArrayList<String> courses;
-	private ArrayList<TimeSlot> availability;
+	private ArrayList<String> courses = new ArrayList<String>();
+    private ArrayList<TimeSlot> availability = new ArrayList<TimeSlot>();
 
 	public Student(String n){
 		name = n;
@@ -33,6 +33,7 @@ public class Student
                 }
                 courses.add(subj+" "+code);
                 System.out.println("Course "+subj+" "+code+" added!");
+				break;
             }
         }
     }

@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class StudyBuddy{
     static ArrayList<Student> students;
@@ -90,7 +90,7 @@ public class StudyBuddy{
         String fullName = firstName+" "+lastName;
         boolean found = false;
         for(Student stud : students){
-            if(stud.getName() == fullName){
+            if(stud.getName().equals(fullName)){
                 //print profile
                 found = true;
                 break;
