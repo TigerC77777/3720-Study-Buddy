@@ -40,11 +40,11 @@ public class Student
 	public void AddAvailability()
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the date, as the month name followed by the day: ");
+		System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
 		String day = input.nextLine();
-		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 		int start = Integer.parseInt(input.nextLine());
-		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 		int end = Integer.parseInt(input.nextLine());
 		TimeSlot time = new TimeSlot(day, start, end);
 
@@ -64,17 +64,25 @@ public class Student
 	public void RemoveAvailability()
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
-		String day = input.nextLine();
-		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
-		int start = (Integer.parseInt(input.nextLine()));
-		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
-		int end = (Integer.parseInt(input.nextLine()));
-		TimeSlot time = new TimeSlot(day, start, end);
-
-		// The remove method checks if the item exists for us
-		if (!availability.remove(time))
-			System.out.println("Inputted time slot does not exist.");
+        System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
+        String day = input.nextLine();
+        System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
+        int start = (Integer.parseInt(input.nextLine()));
+        System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
+        int end = (Integer.parseInt(input.nextLine()));
+        TimeSlot time = new TimeSlot(day, start, end);
+        boolean found = false;
+        for(TimeSlot t : availability){
+            if(t.getDay().equals(day) && t.getStartTime() == start && t.getEndTime() == end){
+                found = true;
+                availability.remove(t);
+                System.out.println("Availability slot removed!");
+                break;
+            }
+        }
+        if(!found){
+            System.out.println("Time slot not found");
+        }
 	}
 
 	public void printProfile(){

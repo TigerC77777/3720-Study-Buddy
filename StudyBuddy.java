@@ -10,6 +10,8 @@ public class StudyBuddy{
         while(true) {
             System.out.println("\nInput your selection:\n1.Create Profile\n2.View Profile\n3.Add Availability\n4.Remove Availability\n5.Search for Classmates\n6.Suggest Matches\n7.Schedule Session\n8.Confirm Session\n9.Exit");
             int num = Integer.parseInt(sc.nextLine());
+            String firstName, lastName, fullName;
+            boolean found = false;
             switch (num) {
                 case 1:
                     createProfile();
@@ -19,11 +21,11 @@ public class StudyBuddy{
                     break;
                 case 3:
                     System.out.println("What is the first name of the student whose availability you wish to add?");
-                    String firstName = sc.nextLine();
+                    firstName = sc.nextLine();
                     System.out.println("What is the last name of the student whose availability you wish to add?");
-                    String lastName = sc.nextLine();
-                    String fullName = firstName+" "+lastName;
-                    boolean found = false;
+                    lastName = sc.nextLine();
+                    fullName = firstName+" "+lastName;
+                    found = false;
                     for(Student stud : students){
                         if(stud.getName().equals(fullName)){
                             stud.AddAvailability();
@@ -36,7 +38,22 @@ public class StudyBuddy{
                     }
                     break;
                 case 4:
-                    //remove availability
+                    System.out.println("What is the first name of the student whose availability you wish to remove?");
+                    firstName = sc.nextLine();
+                    System.out.println("What is the last name of the student whose availability you wish to remove?");
+                    lastName = sc.nextLine();
+                    fullName = firstName+" "+lastName;
+                    found = false;
+                    for(Student stud : students){
+                        if(stud.getName().equals(fullName)){
+                            stud.RemoveAvailability();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Student profile not found");
+                    }
                     break;
                 case 5:
                     //search for classmates
