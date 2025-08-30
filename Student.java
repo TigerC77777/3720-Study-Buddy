@@ -76,4 +76,26 @@ public class Student
 		if (!availability.remove(time))
 			System.out.println("Inputted time slot does not exist.");
 	}
+
+	public void printProfile(){
+		System.out.println("\nStudent Profile: "+name);
+		System.out.println("Courses:");
+		boolean none = true;
+		for(String s : courses){
+			none = false;
+			System.out.println(s);
+		}
+		if(none){
+			System.out.println("None");
+		}
+		System.out.println("Availability:");
+		none = true;
+		for(TimeSlot t : availability){
+			none = false;
+			System.out.println(t.toString());
+		}
+		if(none){
+			System.out.println("None");
+		}
+	}
 }
