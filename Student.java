@@ -52,11 +52,11 @@ public class Student
 		while (availability.contains(time))
 		{
 			System.out.println("This time slot is already present.");
-			System.out.println("Enter the date, as the month name followed by the day: ");
+		System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
 			time.setDay(input.nextLine());
-			System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+			System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 			time.setStartTime(Integer.parseInt(input.nextLine()));
-			System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+			System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 			time.setEndTime(Integer.parseInt(input.nextLine()));
 		}
 		availability.add(time);
