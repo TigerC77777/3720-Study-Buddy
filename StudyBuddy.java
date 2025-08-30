@@ -7,10 +7,10 @@ public class StudyBuddy{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Clemson Study Buddy Helper App!\n");
-        while(true){
-            System.out.println("Input your selection:\n1.Create Profile\n2.View Profile\n3.Add Availability\n4.Remove Availability\n5.Search for Classmates\n6.Suggest Matches\n7.Schedule Session\n8.Confirm Session\n9.Exit");
+        while(true) {
+            System.out.println("\nInput your selection:\n1.Create Profile\n2.View Profile\n3.Add Availability\n4.Remove Availability\n5.Search for Classmates\n6.Suggest Matches\n7.Schedule Session\n8.Confirm Session\n9.Exit");
             int num = Integer.parseInt(sc.nextLine());
-            switch(num){
+            switch (num) {
                 case 1:
                     createProfile();
                     break;
@@ -43,7 +43,6 @@ public class StudyBuddy{
                     break;
             }
         }
-
     }
 
     public static void createProfile(){
@@ -64,7 +63,7 @@ public class StudyBuddy{
             }else{
                 System.out.println("Invalid input, please try again!");
                 continue;
-            }   
+            }
         }
         while(true){
             System.out.println("Make your selection:\n1.Add availability\n2.Continue");
@@ -81,7 +80,7 @@ public class StudyBuddy{
         }
         System.out.println("Student profile created!");
         students.add(newStudent);
-        }
+    }
 
     public static void printProfile(){
         Scanner sc = new Scanner(System.in);
@@ -99,7 +98,7 @@ public class StudyBuddy{
             }
         }
         if(!found){
-            System.out.println("Student profile not found\n");
+            System.out.println("Student profile not found");
         }
     }
 
