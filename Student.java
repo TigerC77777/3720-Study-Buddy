@@ -106,4 +106,13 @@ public class Student
 			System.out.println("None");
 		}
 	}
+
+	public boolean isEnrolled(String course){
+		for(String s : courses){
+			if(s.equals(course)){
+				return true;
+			}
+		}
+		return false;
+	}
 }

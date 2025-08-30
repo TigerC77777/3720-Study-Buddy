@@ -37,8 +37,16 @@ public class TimeSlot
 		day = d;
 	}
 
+	public int getStartTime(){
+		return startTime;
+	}
+
 	public void setStartTime(int s){
 		startTime = s;
+	}
+
+	public int getEndTime(){
+		return endTime;
 	}
 
 	public void setEndTime(int e){

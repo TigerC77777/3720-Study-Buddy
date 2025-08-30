@@ -56,7 +56,27 @@ public class StudyBuddy{
                     }
                     break;
                 case 5:
-                    //search for classmates
+                    String course;
+                    while (true) { 
+                        System.out.println("Enter the course subject code (the 2-4 letters at the start):");
+                        String subj = sc.nextLine();
+                        if(subj.length() < 2 || subj.length() > 4){
+                            System.out.println("Invalid course code. Please try again!");
+                            continue;
+                        }else{
+                            System.out.println("Enter the course identifier code (the 4 numbers at the end):");
+                            int code = Integer.parseInt(sc.nextLine());
+                            if(code > 9999 || code < 1000){
+                                System.out.println("Invalid course code. Please try again!");
+                                continue;
+                            }else{
+                                course = subj+" "+code;
+                                break;
+                            }
+                        }
+                    }
+                    System.out.println("Students enrolled in "+course+":");
+                    searchByCourse(course);
                     break;
                 case 6:
                     //suggest matches
@@ -134,8 +154,12 @@ public class StudyBuddy{
         }
     }
 
-    public void searchByCourse(){
-
+    public static void searchByCourse(String course){
+        for(Student s : students){
+            if(s.isEnrolled(course)){
+                System.out.println(s.getName());
+            }
+        }
     }
 
     public void suggestMatches(){
