@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class StudyBuddy{
     static ArrayList<Student> students = new ArrayList<Student>();
-    //ArrayList<StudySession> sessions;
+    static ArrayList<StudySession> sessions = new ArrayList<StudySession>();
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("Welcome to the Clemson Study Buddy Helper App!\n");
@@ -104,7 +104,7 @@ public class StudyBuddy{
                     }
                     break;
                 case 7:
-                    //schedule session
+                    scheduleSession();
                     break;
                 case 8:
                     //confirm session
@@ -223,8 +223,80 @@ public class StudyBuddy{
         }
     }
 
-    public void scheduleSession(){
+    public static void scheduleSession(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("What is your first name?");
+        String firstName = sc.nextLine();
+        System.out.println("What is your last name?");
+        String lastName = sc.nextLine();
+        String fullName = firstName+" "+lastName;
+        boolean found = false;
+        Student me = new Student(fullName);
+        for(Student s : students){
+            if(s.getName().equals(fullName)){
+                found = true;
+                me = s;
+            }
+        }
+        if(!found){
+            System.out.println("Student profile not found.");
+            return;
+        }else{
+            while(true){
+                System.out.println("What is the first name of the person you want to study with?");
+                String peerFirst = sc.nextLine();
+                System.out.println("What is the last name of the person you want to study with?");
+                String peerLast = sc.nextLine();
+                String peerFull = peerFirst+" "+peerLast;
+                found = false;
+                for(Student s : students){
+                    if(s.getName().equals(peerFull)){
+                        found = true;
+                        makeSession(me, s);
+                        break;
+                    }
+                }
+                if(!found){
+                    System.out.println("No student profile found. Please try again!");
+                    continue;
+                }else{
+                    break;
+                }
+            }
+        }
+    }
 
+    public static void makeSession(Student maker, Student invitee){
+        Scanner input = new Scanner(System.in);
+        String course;
+        while(true){
+            System.out.println("Enter the course subject code (the 2-4 letters at the start):");
+            String subj = input.nextLine();
+            if(subj.length() < 2 || subj.length() > 4){
+                System.out.println("Invalid course code. Please try again!");
+                continue;
+            }else{
+                System.out.println("Enter the course identifier code (the 4 numbers at the end):");
+                int code = Integer.parseInt(input.nextLine());
+                if(code > 9999 || code < 1000){
+                    System.out.println("Invalid course code. Please try again!");
+                    continue;
+                }
+                course = subj+" "+code;
+				break;
+            }
+        }
+        System.out.println("Select a time slot for your study session");
+        System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
+        String day = input.nextLine();
+        System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
+        int start = (Integer.parseInt(input.nextLine()));
+        System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
+        int end = (Integer.parseInt(input.nextLine()));
+        TimeSlot time = new TimeSlot(day, start, end);
+        StudySession thisSession = new StudySession(course, maker, invitee, time);
+        sessions.add(thisSession);
+        System.out.println("Session proposed!");
     }
 
     public void confirmSession(){
