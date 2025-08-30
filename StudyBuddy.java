@@ -18,7 +18,22 @@ public class StudyBuddy{
                     printProfile();
                     break;
                 case 3:
-                    //add availability
+                    System.out.println("What is the first name of the student whose availability you wish to add?");
+                    String firstName = sc.nextLine();
+                    System.out.println("What is the last name of the student whose availability you wish to add?");
+                    String lastName = sc.nextLine();
+                    String fullName = firstName+" "+lastName;
+                    boolean found = false;
+                    for(Student stud : students){
+                        if(stud.getName().equals(fullName)){
+                            stud.AddAvailability();
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Student profile not found");
+                    }
                     break;
                 case 4:
                     //remove availability

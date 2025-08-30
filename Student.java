@@ -64,11 +64,11 @@ public class Student
 	public void RemoveAvailability()
 	{
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the date, as the month name followed by the day: ");
+		System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
 		String day = input.nextLine();
-		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. ");
+		System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 		int start = (Integer.parseInt(input.nextLine()));
-		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. ");
+		System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
 		int end = (Integer.parseInt(input.nextLine()));
 		TimeSlot time = new TimeSlot(day, start, end);
 
