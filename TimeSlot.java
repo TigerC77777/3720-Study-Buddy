@@ -13,14 +13,14 @@ public class TimeSlot
 
 	public boolean overlaps(TimeSlot ts)
 	{
-		return ts.day == this.day && ts.endTime > this.startTime && ts.startTime < this.endTime;
+		return ts.day.equals(this.day) && ts.endTime > this.startTime && ts.startTime < this.endTime;
 	}
 
 	@Override
 	public boolean equals(Object obj)
 	{
 		TimeSlot ts = (TimeSlot)obj;
-		return this.day == ts.day && this.startTime == ts.startTime && this.endTime == ts.endTime;
+		return this.day.equals(ts.day) && this.startTime == ts.startTime && this.endTime == ts.endTime;
 	}
 
 	@Override

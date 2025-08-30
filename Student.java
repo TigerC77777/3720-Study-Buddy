@@ -115,4 +115,12 @@ public class Student
 		}
 		return false;
 	}
+
+	public ArrayList<String> getCourses(){
+		return courses;
+	}
+
+	public ArrayList<TimeSlot> getAvailability(){
+		return availability;
+	}
 }

@@ -76,10 +76,32 @@ public class StudyBuddy{
                         }
                     }
                     System.out.println("Students enrolled in "+course+":");
-                    searchByCourse(course);
+                    ArrayList<Student> peers = searchByCourse(course);
+                    if(peers.isEmpty()){
+                        System.out.println("None");
+                    }else{
+                        for(Student s : peers){
+                            System.out.println(s.getName());
+                        }
+                    }
                     break;
                 case 6:
-                    //suggest matches
+                    System.out.println("What is your first name?");
+                    firstName = sc.nextLine();
+                    System.out.println("What is your last name?");
+                    lastName = sc.nextLine();
+                    fullName = firstName+" "+lastName;
+                    found = false;
+                    for(Student stud : students){
+                        if(stud.getName().equals(fullName)){
+                            found = true;
+                            suggestMatches(stud);
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Student profile not found");
+                    }
                     break;
                 case 7:
                     //schedule session
@@ -122,7 +144,7 @@ public class StudyBuddy{
             int num = Integer.parseInt(sc.nextLine());
             if(num == 1){//add availability
                 newStudent.AddAvailability();
-                break;
+                continue;
             }else if(num == 2){
                 break;
             }else{
@@ -154,16 +176,51 @@ public class StudyBuddy{
         }
     }
 
-    public static void searchByCourse(String course){
+    public static ArrayList<Student> searchByCourse(String course){
+        ArrayList<Student> peers = new ArrayList<Student>();
         for(Student s : students){
             if(s.isEnrolled(course)){
-                System.out.println(s.getName());
+                peers.add(s);
             }
         }
+        return peers;
     }
 
-    public void suggestMatches(){
-
+    public static void suggestMatches(Student s){
+        for(String c : s.getCourses()){
+            ArrayList<Student> peers = searchByCourse(c);
+            for(Student p : peers){
+                if(!(p.getName()).equals(s.getName())){
+                    ArrayList<String> sharedClasses = new ArrayList<String>();
+                    for(String e : p.getCourses()){
+                        if(s.isEnrolled(e)){
+                            sharedClasses.add(e);
+                        }
+                    }
+                    ArrayList<TimeSlot> sharedTimes = new ArrayList<TimeSlot>();
+                    if(!sharedClasses.isEmpty()){
+                        for(TimeSlot t : p.getAvailability()){
+                            for(TimeSlot tt : s.getAvailability()){
+                                if(tt.overlaps(t)){
+                                    sharedTimes.add(t);
+                                }
+                            }
+                        }
+                    }
+                    if(!sharedTimes.isEmpty()){
+                        System.out.println("\nMatch found!\nStudent Name: "+p.getName()+"\nShared Classes:");
+                        for(String sc : sharedClasses){
+                            System.out.println(sc);
+                        }
+                        System.out.println("Overlapping timeslots:");
+                        for(TimeSlot st : sharedTimes){
+                            System.out.println(st.toString());
+                        }
+                        System.out.println();
+                    }
+                }
+            }
+        }
     }
 
     public void scheduleSession(){
