@@ -1,10 +1,10 @@
 public class TimeSlot
 {
-	private string day;
+	private String day;
 	private int startTime;
 	private int endTime;
 
-	public TimeSlot(string d; int s; int e)
+	public TimeSlot(String d, int s, int e)
 	{
 		day = d;
 		startTime = s;
@@ -24,8 +24,24 @@ public class TimeSlot
 	}
 
 	@Override
-	public string toString()
+	public String toString()
 	{
 		return day + ", " + startTime + " to " + endTime;
+	}
+
+	public String getDay(){
+		return day;
+	}
+
+	public void setDay(String d){
+		day = d;
+	}
+
+	public void setStartTime(int s){
+		startTime = s;
+	}
+
+	public void setEndTime(int e){
+		endTime = e;
 	}
 }
