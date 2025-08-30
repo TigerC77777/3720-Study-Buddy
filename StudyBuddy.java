@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StudyBuddy{
-    static ArrayList<Student> students;
+    static ArrayList<Student> students = new ArrayList<Student>();
     //ArrayList<StudySession> sessions;
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
@@ -56,7 +56,7 @@ public class StudyBuddy{
             int num = Integer.parseInt(sc.nextLine());
             if(num == 1){//add a class
                 newStudent.AddCourse();
-                break;
+                continue;
             }else if(num == 2){
                 break;
             }else{
