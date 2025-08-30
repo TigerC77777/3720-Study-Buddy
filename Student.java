@@ -16,20 +16,26 @@ public class Student
     }
 
 	public void AddCourse()
-	{
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter the course name: ");
-		String course = input.nextLine();
-
-		// Prevent adding a duplicate course
-		while (courses.contains(course))
-		{
-			System.out.println(course + " is already present.");
-			System.out.println("Enter the course name: ");
-			course = input.nextLine();
-		}
-		courses.add(course);
-	}
+    {
+        Scanner input = new Scanner(System.in);
+        while(true){
+            System.out.println("Enter the course subject code (the 2-4 letters at the start):");
+            String subj = input.nextLine();
+            if(subj.length() < 2 || subj.length() > 4){
+                System.out.println("Invalid course code. Please try again!");
+                continue;
+            }else{
+                System.out.println("Enter the course identifier code (the 4 numbers at the end):");
+                int code = Integer.parseInt(input.nextLine());
+                if(code > 9999 || code < 1000){
+                    System.out.println("Invalid course code. Please try again!");
+                    continue;
+                }
+                courses.add(subj+" "+code);
+                System.out.println("Course "+subj+" "+code+" added!");
+            }
+        }
+    }
 	public void AddAvailability()
 	{
 		Scanner input = new Scanner(System.in);
