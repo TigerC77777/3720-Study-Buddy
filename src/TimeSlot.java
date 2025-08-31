@@ -1,0 +1,55 @@
+public class TimeSlot
+{
+    private String day;
+    private int startTime;
+    private int endTime;
+
+    public TimeSlot(String d, int s, int e)
+    {
+        day = d;
+        startTime = s;
+        endTime = e;
+    }
+
+    public boolean overlaps(TimeSlot ts)
+    {
+        return ts.day.equals(this.day) && ts.endTime > this.startTime && ts.startTime < this.endTime;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        TimeSlot ts = (TimeSlot)obj;
+        return this.day.equals(ts.day) && this.startTime == ts.startTime && this.endTime == ts.endTime;
+    }
+
+    @Override
+    public String toString()
+    {
+        return day + ", " + startTime + " to " + endTime;
+    }
+
+    public String getDay(){
+        return day;
+    }
+
+    public void setDay(String d){
+        day = d;
+    }
+
+    public int getStartTime(){
+        return startTime;
+    }
+
+    public void setStartTime(int s){
+        startTime = s;
+    }
+
+    public int getEndTime(){
+        return endTime;
+    }
+
+    public void setEndTime(int e){
+        endTime = e;
+    }
+}

@@ -26,3 +26,4 @@ public class StudySession{
         return invitee.getName();
     }
 }
+
