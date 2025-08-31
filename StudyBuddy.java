@@ -20,9 +20,9 @@ public class StudyBuddy{
                     printProfile();
                     break;
                 case 3:
-                    System.out.println("What is the first name of the student whose availability you wish to add?");
+                    System.out.println("What is your first name?");
                     firstName = sc.nextLine();
-                    System.out.println("What is the last name of the student whose availability you wish to add?");
+                    System.out.println("What is your last name?");
                     lastName = sc.nextLine();
                     fullName = firstName+" "+lastName;
                     found = false;
@@ -38,9 +38,9 @@ public class StudyBuddy{
                     }
                     break;
                 case 4:
-                    System.out.println("What is the first name of the student whose availability you wish to remove?");
+                    System.out.println("What is your first name?");
                     firstName = sc.nextLine();
-                    System.out.println("What is the last name of the student whose availability you wish to remove?");
+                    System.out.println("What is your last name?");
                     lastName = sc.nextLine();
                     fullName = firstName+" "+lastName;
                     found = false;
@@ -57,7 +57,7 @@ public class StudyBuddy{
                     break;
                 case 5:
                     String course;
-                    while (true) { 
+                    while (true) {
                         System.out.println("Enter the course subject code (the 2-4 letters at the start):");
                         String subj = sc.nextLine();
                         if(subj.length() < 2 || subj.length() > 4){
@@ -107,7 +107,22 @@ public class StudyBuddy{
                     scheduleSession();
                     break;
                 case 8:
-                    //confirm session
+                    System.out.println("What is your first name?");
+                    firstName = sc.nextLine();
+                    System.out.println("What is your last name?");
+                    lastName = sc.nextLine();
+                    fullName = firstName+" "+lastName;
+                    found = false;
+                    for(Student stud : students){
+                        if(stud.getName().equals(fullName)){
+                            found = true;
+                            confirmSession(stud);
+                            break;
+                        }
+                    }
+                    if(!found){
+                        System.out.println("Student profile not found");
+                    }
                     break;
                 case 9:
                     System.exit(0);
@@ -283,7 +298,7 @@ public class StudyBuddy{
                     continue;
                 }
                 course = subj+" "+code;
-				break;
+                break;
             }
         }
         System.out.println("Select a time slot for your study session");
@@ -299,7 +314,41 @@ public class StudyBuddy{
         System.out.println("Session proposed!");
     }
 
-    public void confirmSession(){
-
+    public static void confirmSession(Student thisStudent){
+        Scanner sc = new Scanner(System.in);
+        ArrayList<StudySession> seshes = new ArrayList<StudySession>();
+        for(StudySession s : sessions){
+            if(s.invitee.getName().equals(thisStudent.getName())){
+                seshes.add(s);
+            }
+        }
+        if(seshes.isEmpty()){
+            System.out.println("You have not been invited to any study sessions.");
+            return;
+        }else{
+            for(StudySession s : seshes) {
+                if (s.status.equals("proposed")) {
+                    System.out.println("\nSession found!");
+                    System.out.println("Session time: " + s.timeSlot.toString());
+                    System.out.println("Session creator: " + s.maker.getName());
+                    System.out.println("Session Class: " + s.course);
+                    while (true) {
+                        System.out.println("1.Confirm Session\n2.Deny & Remove Session");
+                        int num = Integer.parseInt(sc.nextLine());
+                        if (num == 1) {
+                            s.confirm();
+                            System.out.println("Session confirmed!");
+                            break;
+                        } else if (num == 2) {
+                            sessions.remove(s);
+                            System.out.println("Session removed!");
+                            break;
+                        } else {
+                            System.out.println("Invalid input. Please try again!");
+                        }
+                    }
+                }
+            }
+        }
     }
 }

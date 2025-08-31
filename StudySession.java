@@ -1,10 +1,10 @@
 
 public class StudySession{
-    String course;
-    String status; //proposed, confirmed
-    Student maker;
-    Student invitee;
-    TimeSlot timeSlot;
+    public String course;
+    public String status; //proposed, confirmed
+    public Student maker;
+    public Student invitee;
+    public TimeSlot timeSlot;
 
     public StudySession(String c, Student m, Student i, TimeSlot t){
         course = c;
