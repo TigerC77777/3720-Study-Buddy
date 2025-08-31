@@ -78,7 +78,7 @@ public class Student
             }
         }
         if(!found){
-            System.out.println("Time slot not found");
+            System.out.println("Time slot not found.");
         }
     }
 

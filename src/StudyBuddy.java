@@ -34,7 +34,7 @@ public class StudyBuddy{
                         }
                     }
                     if(!found){
-                        System.out.println("Student profile not found");
+                        System.out.println("Student profile not found.");
                     }
                     break;
                 case 4:
@@ -52,7 +52,7 @@ public class StudyBuddy{
                         }
                     }
                     if(!found){
-                        System.out.println("Student profile not found");
+                        System.out.println("Student profile not found.");
                     }
                     break;
                 case 5:
@@ -100,7 +100,7 @@ public class StudyBuddy{
                         }
                     }
                     if(!found){
-                        System.out.println("Student profile not found");
+                        System.out.println("Student profile not found.");
                     }
                     break;
                 case 7:
@@ -121,7 +121,7 @@ public class StudyBuddy{
                         }
                     }
                     if(!found){
-                        System.out.println("Student profile not found");
+                        System.out.println("Student profile not found.");
                     }
                     break;
                 case 9:
@@ -185,7 +185,7 @@ public class StudyBuddy{
             }
         }
         if(!found){
-            System.out.println("Student profile not found");
+            System.out.println("Student profile not found.");
         }
     }
 
