@@ -15,9 +15,8 @@ public class Student
         return name;
     }
 
-    public void AddCourse()
+    public void AddCourse(Scanner input)
     {
-        Scanner input = new Scanner(System.in);
         while(true){
             System.out.println("Enter the course subject code (the 2-4 letters at the start):");
             String subj = input.nextLine();
@@ -37,9 +36,8 @@ public class Student
             }
         }
     }
-    public void AddAvailability()
+    public void AddAvailability(Scanner input)
     {
-        Scanner input = new Scanner(System.in);
         System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
         String day = input.nextLine();
         System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
@@ -61,9 +59,8 @@ public class Student
         }
         availability.add(time);
     }
-    public void RemoveAvailability()
+    public void RemoveAvailability(Scanner input)
     {
-        Scanner input = new Scanner(System.in);
         System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
         String day = input.nextLine();
         System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");

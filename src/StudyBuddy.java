@@ -28,7 +28,7 @@ public class StudyBuddy{
                     found = false;
                     for(Student stud : students){
                         if(stud.getName().equals(fullName)){
-                            stud.AddAvailability();
+                            stud.AddAvailability(sc);
                             found = true;
                             break;
                         }
@@ -46,7 +46,7 @@ public class StudyBuddy{
                     found = false;
                     for(Student stud : students){
                         if(stud.getName().equals(fullName)){
-                            stud.RemoveAvailability();
+                            stud.RemoveAvailability(sc);
                             found = true;
                             break;
                         }
@@ -144,7 +144,7 @@ public class StudyBuddy{
             System.out.println("Make your selection:\n1.Add a course\n2.Continue");
             int num = Integer.parseInt(sc.nextLine());
             if(num == 1){//add a class
-                newStudent.AddCourse();
+                newStudent.AddCourse(sc);
                 continue;
             }else if(num == 2){
                 break;
@@ -157,7 +157,7 @@ public class StudyBuddy{
             System.out.println("Make your selection:\n1.Add availability\n2.Continue");
             int num = Integer.parseInt(sc.nextLine());
             if(num == 1){//add availability
-                newStudent.AddAvailability();
+                newStudent.AddAvailability(sc);
                 continue;
             }else if(num == 2){
                 break;
