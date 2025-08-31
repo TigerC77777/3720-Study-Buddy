@@ -14,10 +14,10 @@ public class StudyBuddy{
             boolean found = false;
             switch (num) {
                 case 1:
-                    createProfile();
+                    createProfile(sc);
                     break;
                 case 2:
-                    printProfile();
+                    printProfile(sc);
                     break;
                 case 3:
                     System.out.println("What is your first name?");
@@ -104,7 +104,7 @@ public class StudyBuddy{
                     }
                     break;
                 case 7:
-                    scheduleSession();
+                    scheduleSession(sc);
                     break;
                 case 8:
                     System.out.println("What is your first name?");
@@ -116,7 +116,7 @@ public class StudyBuddy{
                     for(Student stud : students){
                         if(stud.getName().equals(fullName)){
                             found = true;
-                            confirmSession(stud);
+                            confirmSession(stud, sc);
                             break;
                         }
                     }
@@ -134,8 +134,7 @@ public class StudyBuddy{
         }
     }
 
-    public static void createProfile(){
-        Scanner sc = new Scanner(System.in);
+    public static void createProfile(Scanner sc){
         System.out.println("What is your first name?");
         String firstName = sc.nextLine();
         System.out.println("What is your last name?");
@@ -171,8 +170,7 @@ public class StudyBuddy{
         students.add(newStudent);
     }
 
-    public static void printProfile(){
-        Scanner sc = new Scanner(System.in);
+    public static void printProfile(Scanner sc){
         System.out.println("What is the first name of the student whose profile you wish to view?");
         String firstName = sc.nextLine();
         System.out.println("What is the last name of the student whose profile you wish to view?");
@@ -238,8 +236,7 @@ public class StudyBuddy{
         }
     }
 
-    public static void scheduleSession(){
-        Scanner sc = new Scanner(System.in);
+    public static void scheduleSession(Scanner sc){
         System.out.println("What is your first name?");
         String firstName = sc.nextLine();
         System.out.println("What is your last name?");
@@ -267,7 +264,7 @@ public class StudyBuddy{
                 for(Student s : students){
                     if(s.getName().equals(peerFull)){
                         found = true;
-                        makeSession(me, s);
+                        makeSession(me, s, sc);
                         break;
                     }
                 }
@@ -281,18 +278,17 @@ public class StudyBuddy{
         }
     }
 
-    public static void makeSession(Student maker, Student invitee){
-        Scanner input = new Scanner(System.in);
+    public static void makeSession(Student maker, Student invitee, Scanner sc){
         String course;
         while(true){
             System.out.println("Enter the course subject code (the 2-4 letters at the start):");
-            String subj = input.nextLine();
+            String subj = sc.nextLine();
             if(subj.length() < 2 || subj.length() > 4){
                 System.out.println("Invalid course code. Please try again!");
                 continue;
             }else{
                 System.out.println("Enter the course identifier code (the 4 numbers at the end):");
-                int code = Integer.parseInt(input.nextLine());
+                int code = Integer.parseInt(sc.nextLine());
                 if(code > 9999 || code < 1000){
                     System.out.println("Invalid course code. Please try again!");
                     continue;
@@ -303,19 +299,18 @@ public class StudyBuddy{
         }
         System.out.println("Select a time slot for your study session");
         System.out.println("Enter the date, as the month name followed by the day (ex: September 4): ");
-        String day = input.nextLine();
+        String day = sc.nextLine();
         System.out.println("Enter the starting time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
-        int start = (Integer.parseInt(input.nextLine()));
+        int start = (Integer.parseInt(sc.nextLine()));
         System.out.println("Enter the ending time. Use 24-hour time with nothing in between the hour and minute. (ex: 0830, 1745)");
-        int end = (Integer.parseInt(input.nextLine()));
+        int end = (Integer.parseInt(sc.nextLine()));
         TimeSlot time = new TimeSlot(day, start, end);
         StudySession thisSession = new StudySession(course, maker, invitee, time);
         sessions.add(thisSession);
         System.out.println("Session proposed!");
     }
 
-    public static void confirmSession(Student thisStudent){
-        Scanner sc = new Scanner(System.in);
+    public static void confirmSession(Student thisStudent, Scanner sc){
         ArrayList<StudySession> seshes = new ArrayList<StudySession>();
         for(StudySession s : sessions){
             if(s.invitee.getName().equals(thisStudent.getName())){
